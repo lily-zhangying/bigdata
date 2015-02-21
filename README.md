@@ -4,8 +4,8 @@ big data analyze project
 ## data sets
 
 * use web scrawler to get data of yelp
-* New York Cencus data (already on dropbox found by john)
-* Stores data(talk about Roy)
+* Demographic data of US
+* Stores data
 
 ## frameworks 
 
