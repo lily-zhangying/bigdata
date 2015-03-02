@@ -1,18 +1,30 @@
 from scrapy.spider import Spider
 from scrapy.selector import Selector
 from yelp_crawler.items import YelpItem
+import csv
 
 class YelpSpider(Spider):
 	name = "yelp"
-
 	allowed_domain = ["yelp.com"]
-	#@todo read jojean's data here and concat the urls
-	start_urls = [
-		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=chanel",
-		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=prada",
-		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=enzo",
-		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=H&M"
-	]
+
+	def get_start_urls():
+		url_list = {}
+		start_urls = []
+		with open('/Users/lily/workspace/crwaler/summer_2014_research/mallsdata.csv', 'rb') as csvfile:
+		   spamreader = csv.reader(csvfile, delimiter=',')
+		   for row in spamreader:
+			   mall_list = row[7]
+			   state = row[1]
+			   for mall in mall_list.split("|"):
+			   		mall = mall.strip()
+			   		url_list[mall] = state
+			   		start_urls.append("http://www.yelp.com/search?find_loc=" + state + "&ns=1&find_desc=" + mall)
+			   		print start_urls
+		return start_urls
+
+
+
+	start_urls = get_start_urls()
 
 	def parse(self, response):
 		sel = Selector(response)
@@ -36,3 +48,4 @@ class YelpSpider(Spider):
 			items.append(item)
 		return items
 
+	
