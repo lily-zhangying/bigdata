@@ -6,6 +6,7 @@ class YelpSpider(Spider):
 	name = "yelp"
 
 	allowed_domain = ["yelp.com"]
+	#@todo read jojean's data here and concat the urls
 	start_urls = [
 		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=chanel",
 		"http://www.yelp.com/search?find_loc=nyc&ns=1&find_desc=prada",
@@ -25,11 +26,11 @@ class YelpSpider(Spider):
 				# prada vs prada ny
 			item['name'] = first_store.xpath('.//a[@class="biz-name"]/span/text()').extract()
 			item['address'] = first_store.xpath('.//address/text()').extract()
-				# todo just left 3.5 use pace to split the string
+				#@todo todo just left 3.5 use pace to split the string
 			item['rate'] = first_store.xpath('.//div[@class="rating-large"]/i/@title').extract()
-				# replace $$$$ with numbers
+				#@todo replace $$$$ with numbers
 			item['price_range'] = first_store.xpath('.//div[@class="price-category"]/span/span/text()').extract()
-				# concat retuen array as a string 
+				#@todo concat retuen array as a string 
 			item['category'] = first_store.xpath('.//span[@class="category-str-list"]/a/text()').extract()
 			item['url'] = first_store.xpath('.//a[@class="biz-name"]/@href').extract()
 			items.append(item)
