@@ -12,11 +12,12 @@ class YelpSpider(Spider):
     def get_start_urls():
         start_urls = []
         dir = "/Users/lily/workspace/crwaler/yelp_crawler/yelp_crawler/yelp_crawler/dataset/"
-        with open(dir + 'final_store_3.csv', 'rb') as csvfile:
+        with open(dir + 'final_store_9.csv', 'rb') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 mall = row[0]
-                url = "http://www.yelp.com/search?ns=1&find_desc=" + mall
+# http://www.yelp.com/search?find_loc=USA&ns=1?#find_desc=prada
+                url = "http://www.yelp.com/search?find_loc=USA&ns=1&find_desc=" + mall
                 print url
                 start_urls.append(url)
                 # mall_list = row[7]
