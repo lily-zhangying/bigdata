@@ -10,10 +10,9 @@ class YelpSpider(Spider):
     allowed_domain = ["yelp.com"]
 
     def get_start_urls():
-        # url_list = {}
         start_urls = []
         dir = "/Users/lily/workspace/crwaler/yelp_crawler/yelp_crawler/yelp_crawler/dataset/"
-        with open(dir + 'final_store.csv', 'rb') as csvfile:
+        with open(dir + 'final_store_3.csv', 'rb') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 mall = row[0]
