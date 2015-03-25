@@ -14,4 +14,6 @@ SPIDER_MODULES = ['yelp_crawler.spiders']
 NEWSPIDER_MODULE = 'yelp_crawler.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36'
+
+DOWNLOAD_DELAY = 5   # 0.25 = 250 ms of delay
